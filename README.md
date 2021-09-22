@@ -6,7 +6,11 @@ Self-driving cars are the way of the future, from personal use, deliveries, ship
 
 ## Datasets
 
-We use datasets from the German Institut Für Neutoinformatik at Ruhr-Universität Bochum which has one set (German Traffic Sign Recognition Benchmark, GTSRB) for street sign classification comprised of ~52000 images, which are derived from tracks (series of 30 photos) of the same sign, resulting in varying image sizes for the same sign. The images range from 15x15 to 250x250 pixels in size and there are 43 different signs, which can be generally classified into prohibitory, mandatory, danger, and other. Included are CSVs outlining the file name, image size, bounding box for the sign, and the class. The dataset is pre seperated into training and test splits, with 75% to 25% proportion respectively. The signs are shown here:
+We use datasets from the German Institut Für Neutoinformatik at Ruhr-Universität Bochum which has one set (German Traffic Sign Recognition Benchmark, GTSRB) for street sign classification comprised of ~52000 images, which are derived from tracks (series of 30 photos) of the same sign, resulting in varying image sizes for the same sign. 
+
+![single track](./images/single_track.png)
+
+The images range from 15x15 to 250x250 pixels in size and there are 43 different signs, which can be generally classified into prohibitory, mandatory, danger, and other. Included are CSVs outlining the file name, image size, bounding box for the sign, and the class. The dataset is pre seperated into training and test splits, with 75% to 25% proportion respectively. The signs are shown here:
 
 ![street signs](./images/street_signs.png)
 
@@ -44,6 +48,8 @@ To see the classification capability of Mask RCNN, and potentially use the resul
 ### GTSDB Mask RCNN
 
 In order to get traffic sign recognition, a few attempts were made with image manipulation and sign class IDs. At base with no manipulation and the full sign set, as expected from the results of the previous section, the Mask RCNN did not perform well at differentiating the signs themselves, but did well to pick up sign locations with base performance at ~85%. To extract masks, the minimum confidence in sign recognition was set to 0.1 Normalizing the image contrast and brightness helps with the sign identification a little bit when using all sign categories, and also greatly reduces the odds of finding an extra box. The biggest improvement, since classification isn't performed here, was to just classify off of general sign shape and color (red circle, red triangle up, red triangle down, blue circle, etc). This significantly improved the performance for identification, making the final outcome 93% effective at properly identifying signs. 
+
+![maskrcnn](./images/maskrcnn_example.png)
 
 [GTSDB Mask RCNN training](code/GTSDB_Mask_RCNN_train.ipynb)
 
